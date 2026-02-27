@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Telegram Contact</title>
+  <style>
+    :root{
+      --bg1:#0b0d12;
+      --bg2:#111826;
+      --text:#ffffff;
+      --muted:rgba(255,255,255,.75);
+      --muted2:rgba(255,255,255,.55);
+      --blue1:#1d9bf0;
+      --blue2:#1479cc;
+      --card:rgba(255,255,255,.06);
+      --border:rgba(255,255,255,.10);
+      --shadow: 0 18px 50px rgba(0,0,0,.55);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 50% 0%, rgba(29,155,240,.18), transparent 60%),
+        linear-gradient(180deg, var(--bg2), var(--bg1));
+      display:grid;
+      place-items:center;
+      padding:22px;
+    }
+
+    .wrap{
+      width:min(920px, 100%);
+    }
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: clamp(20px, 4vw, 42px);
+      text-align:center;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:-80px -80px auto -80px;
+      height:180px;
+      background: radial-gradient(closest-side, rgba(29,155,240,.25), transparent 70%);
+      filter: blur(2px);
+      pointer-events:none;
+    }
+
+    h1{
+      margin:0 0 16px;
+      font-weight:800;
+      letter-spacing:.2px;
+      line-height:1.18;
+      font-size: clamp(22px, 3.4vw, 40px);
+    }
+
+    .sub{
+      margin: 0 0 22px;
+      font-size: clamp(16px, 2.1vw, 22px);
+      color: var(--muted);
+      font-weight:700;
+      line-height:1.35;
+    }
+
+    .btn{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      width:min(520px, 100%);
+      margin: 0 auto 16px;
+      padding: 16px 18px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: linear-gradient(180deg, var(--blue1), var(--blue2));
+      color:#fff;
+      text-decoration:none;
+      font-weight:800;
+      font-size: 18px;
+      box-shadow: 0 14px 30px rgba(29,155,240,.25);
+      transition: transform .12s ease, filter .12s ease;
+      user-select:none;
+    }
+    .btn:hover{ transform: translateY(-1px); filter: brightness(1.05); }
+    .btn:active{ transform: translateY(1px); }
+
+    .hint{
+      margin: 10px 0 18px;
+      color: var(--muted2);
+      font-size: 14px;
+      line-height:1.45;
+    }
+
+    .nick{
+      margin: 0;
+      font-weight:900;
+      letter-spacing:.6px;
+      font-size: clamp(26px, 4.2vw, 52px);
+      text-shadow: 0 10px 25px rgba(0,0,0,.55);
+    }
+
+    .footer{
+      margin-top: 14px;
+      text-align:center;
+      color: rgba(255,255,255,.35);
+      font-size: 12px;
+    }
+
+    @media (max-width:420px){
+      .btn{ font-size:16px; padding:14px 16px; }
+      .hint{ font-size:13px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="card">
+      <h1>
+        Первинна видача, відкриття категорій,<br>
+        відновлення втрачених, видача після 130<br>
+        статті.
+      </h1>
+
+      <p class="sub">
+        Працюємо без передоплат, з усіх питань<br>
+        пишіть в Telegram
+      </p>
+
+      <!-- КНОПКА + ЛІД ТРИГЕР (id="leadBtn") -->
+      <a id="leadBtn" class="btn" href="https://t.me/valentin_dokument" target="_blank" rel="noopener">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M21.8 4.6c.2-.9-.7-1.6-1.5-1.2L2.9 10.6c-1 .4-.9 1.8.2 2.1l4.7 1.4 1.8 5.7c.3 1 1.6 1.1 2.1.3l2.6-3.9 4.8 3.5c.8.6 2 .2 2.2-.8L21.8 4.6Z" fill="white" opacity=".95"/>
+          <path d="M9 14.1 18.8 6.9c.4-.3.9.2.6.6l-8 7.7c-.3.3-.5.6-.5 1.1l-.2 2.3c0 .5-.7.6-.8.1l-1.4-4.6c-.2-.6 0-1.2.5-1.6Z" fill="white" opacity=".75"/>
+        </svg>
+        Telegram
+      </a>
+
+      <p class="hint">
+        Щоб зв'язатись за нами тисніть на кнопку для переходу в телеграм,<br>
+        або шукайте за нікнеймом
+      </p>
+
+      <p class="nick">@valentin_dokument</p>
+    </section>
+
+    <div class="footer">© <span id="y"></span></div>
+  </main>
+
+  <script>
+    // footer year
+    document.getElementById("y").textContent = new Date().getFullYear();
+
+    // LEAD trigger on button
+    const leadBtn = document.getElementById("leadBtn");
+    leadBtn.addEventListener("click", function () {
+      // 1) універсальна мітка (щоб бачити в консолі)
+      console.log("LEAD: Telegram button clicked");
+
+      // 2) Google Analytics (якщо підключиш gtag)
+      if (window.gtag) {
+        window.gtag("event", "lead", {
+          event_category: "telegram",
+          event_label: "telegram_click",
+        });
+      }
+
+      // 3) Meta Pixel (якщо підключиш fbq)
+      if (window.fbq) {
+        window.fbq("track", "Lead");
+      }
+
+      // 4) TikTok Pixel (якщо підключиш ttq)
+      if (window.ttq) {
+        window.ttq.track("SubmitForm");
+      }
+
+      // 5) Свій бек (якщо захочеш)
+      // fetch("/lead", { method:"POST", headers:{ "Content-Type":"application/json" }, body: JSON.stringify({type:"telegram", time:Date.now()}) });
+    });
+  </script>
+</body>
+</html>
